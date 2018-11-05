@@ -11,13 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('master');
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+/*
+Route::get('/createAccount', function () {
+    return view('createAccount');
 });
 
 Route::get('/create', function () {
     return view('create');
-});
+});*/
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
