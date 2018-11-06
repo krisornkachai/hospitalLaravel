@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,17 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('master');
 });
 
+
+Route::get('/index', function () {
+    $users = User::all()->toArray();
+    return view('index' , compact('users'));
+});
+
+
+Route::get('/index2', function () {
+    
+    $users = User::all()->toArray();
+    return view('index' , compact('users'));
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::resource('user','UsersController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home2', 'HomeController@destroy');
