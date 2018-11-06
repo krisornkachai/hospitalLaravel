@@ -32,4 +32,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('user','UsersController');
+Route::resource('user', 'UsersController');
+
+	
+Route::any('destroy/{id}', 'UsersController@destroy');
+Route::any('update/{id}', 'UsersController@update');
+Route::any('update2/{id}', 'UsersController@update2');
+Route::any('search', 'UsersController@search');
+
