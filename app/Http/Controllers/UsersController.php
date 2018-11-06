@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+<<<<<<< HEAD
 use App\User;
+=======
+>>>>>>> origin/laravel_hospital_krisorn
 
 use Illuminate\Http\Request;
 
@@ -14,8 +17,12 @@ class UsersController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $users = User::all()->toArray();
         return view('index' , compact('users'));
+=======
+        return view('auth.register');
+>>>>>>> origin/laravel_hospital_krisorn
     }
 
     /**
@@ -25,7 +32,11 @@ class UsersController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         
+=======
+        //
+>>>>>>> origin/laravel_hospital_krisorn
     }
 
     /**
@@ -82,6 +93,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+<<<<<<< HEAD
         return 0;
+=======
+>>>>>>> origin/laravel_hospital_krisorn
     }
 }

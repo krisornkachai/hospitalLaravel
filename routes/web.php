@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('master');
 });
 
+<<<<<<< HEAD
 
 Route::get('/index', function () {
     $users = User::all()->toArray();
@@ -27,12 +28,23 @@ Route::get('/index2', function () {
     $users = User::all()->toArray();
     return view('index' , compact('users'));
 });
+=======
+Route::get('/create', function () {
+    return view('create');
+});*/
+
+Auth::routes();
+>>>>>>> origin/laravel_hospital_krisorn
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
 Route::resource('user','UsersController@index');
 
 Route::get('/home2', 'HomeController@destroy');
+=======
+Route::resource('user','UsersController');
+>>>>>>> origin/laravel_hospital_krisorn
