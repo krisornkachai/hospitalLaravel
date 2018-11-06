@@ -11,8 +11,13 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+/*
+Route::get('/createAccount', function () {
+    return view('createAccount');
 });
 
 <<<<<<< HEAD
