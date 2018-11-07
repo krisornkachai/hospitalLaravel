@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
+
 class UsersController extends Controller
 {
     /**
@@ -13,7 +14,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-        
         $users = User::all()->toArray();
         return view('index' , compact('users'));
     }
@@ -108,21 +108,15 @@ class UsersController extends Controller
 
     public function update($id)
     {
-       
-       $user = User::find($id);
-      
+        $user = User::find($id);
        return view('update' , compact('user','id'));
-      
-
-    }
+      }
 
     public function search(Request $request)
     {
-        
-       $user = User::find($request->get('id'));
-      
-       return view('search' ,compact('user','id'));
-      
-
+        $user = User::find($request->get('id'));
+      return view('search' ,compact('user','id'));
     }
+
+
 }

@@ -40,3 +40,5 @@ Route::any('update/{id}', 'UsersController@update');
 Route::any('update2/{id}', 'UsersController@update2');
 Route::any('search', 'UsersController@search');
 
+Route::get('/check-model','operationController@getIndex');
+Route::any('operationShow/{operation_id}','operationController@operationShow');
