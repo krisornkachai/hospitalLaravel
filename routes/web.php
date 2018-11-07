@@ -19,10 +19,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/createAccount', function () {
     return view('createAccount');
 });
-
-Route::get('/create', function () {
-    return view('create');
-});*/
+*/
+Route::get('/update', function () {
+    return view('update');
+});
 
 Auth::routes();
 
