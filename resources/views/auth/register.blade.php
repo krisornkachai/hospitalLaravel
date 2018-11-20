@@ -4,18 +4,19 @@
                
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="card">
+                      
                         <div class="card-header">{{ __('Register') }}  <a href="{{ route('login') }}">Login</a></div>
         
                         <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
+                  
+                                <div class="form-group row justify-content-center">
+                                    <label for="name" class="col-md-auto col-form-label ">{{ __('Name') }}</label>
         
-                                <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-        
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
         
                                         @if ($errors->has('name'))
@@ -24,15 +25,11 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+
+  
+                                    <label for="name" class="col-md-auto col-form-label">{{ __('surname') }}</label>
         
-        
-        
-        
-                                   <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('surname') }}</label>
-        
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
         
                                         @if ($errors->has('surname'))
@@ -41,16 +38,17 @@
                                             </span>
                                         @endif
                                     </div>
+
                                 </div>
         
-        
-        
-        
+                                
+                              
+
                                  <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('birthday') }}</label>
         
                                     <div class="col-md-6">
-                                        <input id="birthdate" type="text" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
+                                        <input id="birthdate" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
         
                                         @if ($errors->has('birthday'))
                                             <span class="invalid-feedback" role="alert">
@@ -94,12 +92,15 @@
                                     </div>
                                 </div>
         
+
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('gender') }}</label>
         
                                     <div class="col-md-6">
-                                        <input id="gender" type="text" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
-        
+                                        <select  id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
+                                                <option>male</option>
+                                                <option>female</option>
+                                        </select>
                                         @if ($errors->has('gender'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('gender') }}</strong>
@@ -107,6 +108,7 @@
                                         @endif
                                     </div>
                                 </div>
+
         
         
         
