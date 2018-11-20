@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\User;
-
 use Illuminate\Http\Request;
+
 
 class UsersController extends Controller
 {
@@ -15,7 +15,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all()->toArray();
-        return view('index' , compact('users'));
+        return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -25,7 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -48,6 +48,9 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -68,9 +71,24 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_to_database(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->surname = $request->get('surname');
+        $user->birthday = $request->get('birthday');
+        $user->blood_group = $request->get('blood_group');
+        $user->age = $request->get('age');
+        $user->gender = $request->get('gender');
+        $user->patient_type_id = $request->get('patient_type_id');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+        $user->operation_id = $request->get('operation_id');
+     
+        $user->save();
+        $users = User::all()->toArray();
+        return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -82,6 +100,53 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-        return 0;
+       // return view('create');
+       $user = User::find($id);
+       $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+
+    }
+
+
+    public function manager()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+
+    }
+
+    public function doctor()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+        //$users = doctor::all()->toArray();
+        return view('admin.manager');
+
+    }
+
+    public function update($id)
+    {
+        $user = User::find($id);
+       return view('update' , compact('user','id'));
+      }
+
+    public function search(Request $request)
+    {
+        $user = User::find($request->get('id'));
+        if($user!=null)
+        {
+            return view('search' ,compact('user','id'));
+        }
+        else{
+            $users = User::all()->toArray();
+            return view('admin.manager' , compact('users'));
+      }
     }
 }
