@@ -1,5 +1,5 @@
 <?php
-use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,43 +13,48 @@ use App\User;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
 
 /*
 Route::get('/createAccount', function () {
     return view('createAccount');
 });
-
-<<<<<<< HEAD
-
-Route::get('/index', function () {
-    $users = User::all()->toArray();
-    return view('index' , compact('users'));
+*/
+Route::get('/update', function () {
+    return view('update');
 });
-
-
-Route::get('/index2', function () {
-    
-    $users = User::all()->toArray();
-    return view('index' , compact('users'));
-});
-=======
 Route::get('/create', function () {
     return view('create');
 });*/
 
-Auth::routes();
->>>>>>> origin/laravel_hospital_krisorn
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-<<<<<<< HEAD
+Route::resource('user', 'UsersController');
+
+	
+Route::any('destroy/{id}', 'UsersController@destroy');
+Route::any('update/{id}', 'UsersController@update');
+Route::any('update_to_database/{id}', 'UsersController@update_to_database');
+Route::any('search', 'UsersController@search');
+
+Route::get('/check-model','operationController@getIndex');
+Route::any('operationShow/{operation_id}','operationController@operationShow');
+
+Route::any('manager', 'UsersController@manager');
+Route::any('doctor', 'UsersController@doctor');
+
+Route::group(['prefix' => 'admin', 'middleware' => array('auth','admin'), 'namespace' => 'Admin'], function (){
+    Route::get('/', function()
+    {
+        return View('admin.dashboard');
+    });
+    
+});
 Route::resource('user','UsersController@index');
 
 Route::get('/home2', 'HomeController@destroy');
-=======
 Route::resource('user','UsersController');
->>>>>>> origin/laravel_hospital_krisorn
+

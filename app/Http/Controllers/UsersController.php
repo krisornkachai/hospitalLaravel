@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
 use App\User;
-=======
->>>>>>> origin/laravel_hospital_krisorn
-
 use Illuminate\Http\Request;
+
 
 class UsersController extends Controller
 {
@@ -17,12 +14,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $users = User::all()->toArray();
-        return view('index' , compact('users'));
-=======
-        return view('auth.register');
->>>>>>> origin/laravel_hospital_krisorn
+        return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -32,11 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
-        
-=======
         //
->>>>>>> origin/laravel_hospital_krisorn
     }
 
     /**
@@ -59,6 +48,9 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -79,9 +71,24 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_to_database(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->surname = $request->get('surname');
+        $user->birthday = $request->get('birthday');
+        $user->blood_group = $request->get('blood_group');
+        $user->age = $request->get('age');
+        $user->gender = $request->get('gender');
+        $user->patient_type_id = $request->get('patient_type_id');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+        $user->operation_id = $request->get('operation_id');
+     
+        $user->save();
+        $users = User::all()->toArray();
+        return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -93,9 +100,53 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-<<<<<<< HEAD
-        return 0;
-=======
->>>>>>> origin/laravel_hospital_krisorn
+       // return view('create');
+       $user = User::find($id);
+       $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+
+    }
+
+
+    public function manager()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+
+    }
+
+    public function doctor()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+        //$users = doctor::all()->toArray();
+        return view('admin.manager');
+
+    }
+
+    public function update($id)
+    {
+        $user = User::find($id);
+       return view('update' , compact('user','id'));
+      }
+
+    public function search(Request $request)
+    {
+        $user = User::find($request->get('id'));
+        if($user!=null)
+        {
+            return view('search' ,compact('user','id'));
+        }
+        else{
+            $users = User::all()->toArray();
+            return view('admin.manager' , compact('users'));
+      }
     }
 }
