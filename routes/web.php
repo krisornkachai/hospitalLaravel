@@ -13,7 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
 
 /*
 Route::get('/createAccount', function () {
@@ -23,10 +22,11 @@ Route::get('/createAccount', function () {
 Route::get('/update', function () {
     return view('update');
 });
+Route::get('/create', function () {
+    return view('create');
+});*/
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -53,3 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => array('auth','admin'), 'names
     });
     
 });
+Route::resource('user','UsersController@index');
+
+Route::get('/home2', 'HomeController@destroy');
+Route::resource('user','UsersController');
+
