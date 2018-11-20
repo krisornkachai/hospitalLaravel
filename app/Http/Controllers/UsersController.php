@@ -15,7 +15,9 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all()->toArray();
-        return view('index' , compact('users'));
+
+        return view('admin.manager' , compact('users'));
+
     }
 
     /**
@@ -48,6 +50,9 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
     }
 
     /**
@@ -68,7 +73,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update2(Request $request, $id)
+
+    public function update_to_database(Request $request, $id)
+
     {
         //
         $user = User::find($id);
@@ -85,7 +92,9 @@ class UsersController extends Controller
      
         $user->save();
         $users = User::all()->toArray();
-       return view('index' , compact('users'));
+
+        return view('admin.manager' , compact('users'));
+
     }
 
     /**
@@ -101,10 +110,37 @@ class UsersController extends Controller
        $user = User::find($id);
        $user->delete();
       $users = User::all()->toArray();
-       return view('index' , compact('users'));
+
+       return view('admin.manager' , compact('users'));
+
       //dd($id);
 
     }
+
+
+
+    public function manager()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+      $users = User::all()->toArray();
+       return view('admin.manager' , compact('users'));
+      //dd($id);
+
+    }
+
+    public function doctor()
+    {
+       // return view('create');
+       //$user = User::find($id);
+      // $user->delete();
+        //$users = doctor::all()->toArray();
+        return view('admin.manager');
+
+    }
+
+
 
     public function update($id)
     {
@@ -115,8 +151,15 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $user = User::find($request->get('id'));
-      return view('search' ,compact('user','id'));
+
+        if($user!=null)
+        {
+            return view('search' ,compact('user','id'));
+        }
+        else{
+            $users = User::all()->toArray();
+            return view('admin.manager' , compact('users'));
+      }
     }
-
-
 }
+

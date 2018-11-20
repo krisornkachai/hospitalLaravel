@@ -1,4 +1,6 @@
+
 @extends('layouts.appHead')
+
 
 @section('content')
                
@@ -9,7 +11,9 @@
                         <div class="card-header">{{ __('update') }}  <a href="{{ route('login') }}">data</a></div>
         
                         <div class="card-body">
+
                             <form method="POST" action="{{action('UsersController@update2',$id) }}">
+
                                 @csrf
         
                                 <div class="form-group row">

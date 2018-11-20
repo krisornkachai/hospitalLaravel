@@ -41,10 +41,11 @@
  <td>"{{$user->patian_type_id}}"</td>
  <tr>
               <th>operation_id</th>
+
                <td ><a href="{{ action('operationController@operationShow',$user->id )}}" method="get"> "{{$user->operation_id}}"</a></td>
                <tr> 
                     
-              
+
               
               
               
