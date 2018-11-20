@@ -22,9 +22,11 @@ Route::get('/createAccount', function () {
 Route::get('/update', function () {
     return view('update');
 });
+
 Route::get('/create', function () {
     return view('create');
-});*/
+});
+
 
 
 
@@ -37,6 +39,7 @@ Route::resource('user', 'UsersController');
 	
 Route::any('destroy/{id}', 'UsersController@destroy');
 Route::any('update/{id}', 'UsersController@update');
+
 Route::any('update_to_database/{id}', 'UsersController@update_to_database');
 Route::any('search', 'UsersController@search');
 
@@ -57,4 +60,5 @@ Route::resource('user','UsersController@index');
 
 Route::get('/home2', 'HomeController@destroy');
 Route::resource('user','UsersController');
+
 

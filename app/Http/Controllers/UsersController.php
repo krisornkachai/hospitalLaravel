@@ -15,7 +15,9 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all()->toArray();
+
         return view('admin.manager' , compact('users'));
+
     }
 
     /**
@@ -71,7 +73,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update_to_database(Request $request, $id)
+
     {
         //
         $user = User::find($id);
@@ -88,7 +92,9 @@ class UsersController extends Controller
      
         $user->save();
         $users = User::all()->toArray();
+
         return view('admin.manager' , compact('users'));
+
     }
 
     /**
@@ -104,10 +110,13 @@ class UsersController extends Controller
        $user = User::find($id);
        $user->delete();
       $users = User::all()->toArray();
+
        return view('admin.manager' , compact('users'));
+
       //dd($id);
 
     }
+
 
 
     public function manager()
@@ -131,6 +140,8 @@ class UsersController extends Controller
 
     }
 
+
+
     public function update($id)
     {
         $user = User::find($id);
@@ -140,6 +151,7 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $user = User::find($request->get('id'));
+
         if($user!=null)
         {
             return view('search' ,compact('user','id'));
@@ -150,3 +162,4 @@ class UsersController extends Controller
       }
     }
 }
+
